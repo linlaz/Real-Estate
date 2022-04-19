@@ -1,0 +1,13 @@
+<odoo>
+    <menuitem id="library_root_menu" name="Library" sequence="0">
+        <menuitem id="library_first_level" name="Borrower Book" sequence="0">
+            <menuitem id="borrower_action_view" action="library_borrower_book_type_action" name="Borrower" sequence="0"/>
+        </menuitem>
+        <menuitem id="library_second_level" name="Manage Book">
+            <menuitem id="book_action_view" action="library_book_type_action" name="Book" sequence="0"/>
+            <menuitem id="author_action_view" action="library_author_book_type_action" name="Author Book"/>
+            <menuitem id="category_action_view" action="library_category_book_type_action" name="Category Book"/>
+            <menuitem id="publisher_action_view" action="library_publisher_book_type_action" name="Publisher Book"/>
+        </menuitem>
+    </menuitem>
+</odoo>

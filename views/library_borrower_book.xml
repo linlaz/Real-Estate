@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="library_borrower_book_type_tree">
+             <field name="name">Manage Borrower Book</field>
+            <field name="model">library.borrower.book</field>
+            <field name="arch" type="xml">
+                <tree string="Manage Book List">
+                    <field name="name" string="No Invoice"/>
+                    <field name="user_id" string="Name User"/>
+                    <field name="state" string="Status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="library_book_type_form">
+             <field name="name">Manage Borrower Book</field>
+            <field name="model">library.borrower.book</field>
+            <field name="arch" type="xml">
+                <form string="Manage Borrower Book form">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="in,due,block"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Invoice Library</h1>
+                             <label for="name" class="oe_edit_only" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Name Book" attrs="{'invisible': [('state', '=', 'draft')], 'readonly': [('state', '!=', 'draft')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <field name="total"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail Borrower">
+                                <field name="detail_borrower_ids">
+                                    <tree>
+                                        <field name="validity"/>
+                                        <field name="start_borrow"/>
+                                        <field name="finish_borrow"/>
+                                        <field name="book_id"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+         <record id="library_borrower_book_type_action" model="ir.actions.act_window">
+              <field name="name">Manage Borrower Book</field>
+              <field name="res_model">library.borrower.book</field>
+              <field name="view_mode">tree,form</field>
+         </record>
+    </data>
+</odoo>

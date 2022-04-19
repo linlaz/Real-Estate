@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+
+         <record model="ir.ui.view" id="library_book_type_tree">
+            <field name="name">Manage Book List</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <tree string="Manage Book List">
+                    <field name="name"/>
+                    <field name="author_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!--form-->
+         <record model="ir.ui.view" id="library_book_type_form">
+            <field name="name">Manage Book Form</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <form string="Manage Book form">
+                    <sheet>
+                        <div class="oe_title">
+                             <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="e.g. Name Book"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="author_id"/>
+                                <field name="category_id"/>
+                                <field name="publisher_id"/>
+                            </group>
+                            <group>
+                                <field name="release"/>
+                                <field name="total"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Detail Book">
+                                <group>
+                                    <field name="summary"/>
+                                    <field name="thumbnail" widget="image"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--endform-->
+
+        <record model="ir.actions.act_window" id="library_book_type_action">
+          <field name="name">Manage Book</field>
+          <field name="res_model">library.book</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

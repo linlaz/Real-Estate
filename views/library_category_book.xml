@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <record model="ir.ui.view" id="library_category_book_type_tree">
+            <field name="name">Category Book List</field>
+            <field name="model">library.category.book</field>
+            <field name="arch" type="xml">
+                <tree editable="top" string="Manage Book List">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="library_category_book_type_action">
+          <field name="name">Category Book</field>
+          <field name="res_model">library.category.book</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
