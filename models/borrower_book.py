@@ -6,8 +6,11 @@ from odoo.exceptions import UserError
 class BorrowerBook(models.Model):
     _name = "library.borrower.book"
     _description = "Database Borrower Book"
+    _sql_constraints = [
+        ("name_unique", "unique(name)", "Code Have Problem, Please Create Again")
+    ]
 
-    name = fields.Char(string="Number Invoice", unique=True, default="Lib/" + str(fields.datetime.now().year) + "/" + str(random.randint(1, 9999999)), readonly=True, required=True)
+    name = fields.Char(string="Number Invoice", unique=True, default="LIB/" + str(fields.datetime.now().year) + "/" + str(random.randint(1, 9999999)), readonly=True, required=True)
     user_id = fields.Many2one("res.users", string="Borrower", default=lambda self: self.env.user)
     state = fields.Selection(
         string="Status Loan",
@@ -29,7 +32,9 @@ class BorrowerBook(models.Model):
 
     @api.model
     def create(self, vals):
-        self.state = "In Progress"
-        # if self.total < 1:
-        #     raise UserError("Invoice can't create because is null borrower book")
-        return super(BorrowerBook, self).create(vals)
+        res = super(BorrowerBook, self).create(vals)
+        if res.total > 0:
+            res.state = "in"
+        else:
+            raise UserError("Borrower must have book")
+        return res
