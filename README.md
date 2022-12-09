@@ -1,1 +1,1 @@
-# library module for odoo
+# module odoo real estate
